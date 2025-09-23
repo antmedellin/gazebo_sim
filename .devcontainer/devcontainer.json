@@ -1,0 +1,40 @@
+{
+
+    "image" : "ros_and_gazebo",
+  
+    //   "mounts":[
+   
+    //     //   "source=${localWorkspaceFolder}/../data/LIB-HSI,target=/workspaces/data,type=bind,consistency=cached",
+    //   ],
+  	"postStartCommand": " gz sim /workspaces/gazebo_sim/src/gazebo_files/building_robot.sdf",
+
+    "runArgs":[
+
+      //   "--gpus=all",
+        "-e", "HOST_UID=$(id -u)",
+        "-e", "HOST_GID=$(id -g)"
+    ],
+  
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+          // Add the IDs of extensions you want installed when the container is created.
+          "extensions": [
+              "ms-python.python",
+              "ms-azuretools.vscode-docker",
+              "streetsidesoftware.code-spell-checker",
+              "ms-vscode.cmake-tools"
+            ]
+            
+        }
+      },
+
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    }
+
+
+  }
+
+
+
