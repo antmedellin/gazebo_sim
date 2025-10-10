@@ -1,8 +1,7 @@
 # build docker image
-# docker build -t ros_and_gazebo .
+# docker build -t ros_and_gazebo_osrf .
 
-# Base image with ROS 2 Humble (you can switch to Galactic or Iron if needed)
-FROM ros:humble
+FROM osrf/ros:jazzy-desktop-full
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -31,18 +30,9 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     gnupg2 \
     python3-colcon-common-extensions \
-    ros-humble-desktop \
-    ros-humble-gazebo-ros-pkgs \
-    ros-humble-moveit \
-    ros-humble-xacro \
-    ignition-fortress \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] https://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null 
-    
-RUN apt-get update && apt-get install gz-harmonic -y
-
+# RUN pip install --break-system-packages pyside6
 
 RUN useradd -m developer 
 
@@ -52,7 +42,7 @@ USER developer
 
 WORKDIR /workspaces
 
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 RUN echo "source /workspaces/gazebo_sim/install/setup.bash" >> ~/.bashrc
 
 

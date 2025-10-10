@@ -31,9 +31,9 @@ If you need to manually set up the ROS 2 workspace, run the following commands f
 
 ```bash
 rosdep update
-rosdep install -i --from-path src --rosdistro humble -y
-colcon build 
-. install/setup.bash
+# rosdep install -i --from-path src --rosdistro jazzy -y
+colcon build --symlink-install
+source install/setup.bash
 ```
 
 ## Documentation References
@@ -59,11 +59,44 @@ The simulation automatically starts when the dev container launches. The robot m
 
 The command is
 ```
- gz sim /workspaces/gazebo_sim/src/gazebo_files/building_robot.sdf
+  ros2 launch sample_arm arm_simulation.launch.py 
+
 ```
+ <!-- gz sim /workspaces/gazebo_sim/src/gazebo_files/building_robot.sdf -->
 
 ## Development Notes
 
-- ROS 2 Humble is used as the base distribution
+- ROS 2 Jazzy is used as the base distribution
 - Gazebo Harmonic is included for simulation
 - The dev container is configured to automatically source the ROS 2 environment
+
+
+
+
+## Creating a New Package
+To create a new ROS 2 package, use the following command in the src directory:
+
+```
+ros2 pkg create --build-type ament_python --license Apache-2.0 {package_name}
+```
+
+modify package.xml and setup.py as needed
+
+build a specific package with:
+```
+colcon build --packages-select {package_name}
+```
+
+## Running the Robot Arm GUI
+To run the robot arm GUI, use the following command:
+
+```
+ros2 run sample_arm ros_arm_gui
+
+```
+
+To launch the full simulation with the robot arm, use:
+
+```
+ ros2 launch sample_arm arm_simulation.launch.py 
+```

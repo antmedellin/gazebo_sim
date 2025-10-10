@@ -1,12 +1,14 @@
 {
 
-    "image" : "ros_and_gazebo",
+    // "image" : "ros2_jazzy_and_gazebo_harmonic",
+        "image" : "ros_and_gazebo_osrf",
+
   
     //   "mounts":[
    
     //     //   "source=${localWorkspaceFolder}/../data/LIB-HSI,target=/workspaces/data,type=bind,consistency=cached",
     //   ],
-  	"postStartCommand": " gz sim /workspaces/gazebo_sim/src/gazebo_files/building_robot.sdf",
+  	// "postStartCommand": " gz sim /workspaces/gazebo_sim/src/gazebo_files/building_robot.sdf",
 
     "runArgs":[
 
@@ -29,12 +31,22 @@
         }
       },
 
-    "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
-    }
+    // "settings": {
+    //     "terminal.integrated.defaultProfile.linux": "bash"
+    // }
 
 
   }
+
+
+// // gz topic -l 
+// // gz topic -e -t /model/simple_arm/joint_state
+// ros2 topic list 
+// https://gazebosim.org/docs/harmonic/ros2_launch_gazebo/
+// https://docs.ros.org/en/jazzy/Tutorials/Advanced/Simulators/Gazebo/Gazebo.html
+// https://docs.ros.org/en/humble/Tutorials/Advanced/Simulators/Gazebo/Gazebo.html
+// https://gazebosim.org/docs/harmonic/ros2_integration/
+// https://gazebosim.org/docs/harmonic/install_ubuntu/
 
 
 
