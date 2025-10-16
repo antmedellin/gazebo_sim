@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
     python3-colcon-common-extensions \
     && rm -rf /var/lib/apt/lists/*
 
-# RUN pip install --break-system-packages pyside6
+RUN pip install --break-system-packages pyside6 pyserial
 
 RUN useradd -m developer 
 

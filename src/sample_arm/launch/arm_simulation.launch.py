@@ -46,21 +46,7 @@ def generate_launch_description():
             '/model/simple_arm/joint/joint3/cmd_pos@std_msgs/msg/Float64@gz.msgs.Double',
             '/model/simple_arm/joint/joint4/cmd_pos@std_msgs/msg/Float64@gz.msgs.Double',
             '/model/simple_arm/joint/gripper_joint/cmd_pos@std_msgs/msg/Float64@gz.msgs.Double',
-            
-            # # Vehicle control topic
-            # '/model/vehicle_blue/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-            # publish values 
-            # ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/Twist "linear: { x: 0.1 }"
-            # see values ros
-            # ros2 topic echo /model/vehicle_blue/cmd_vel
-            # see values ign 
-            #  ign topic -e -t /model/vehicle_blue/cmd_vel
-            
-            # # Alternate topic names (some worlds/models advertise these)
-            # '/simple_arm/joint1/cmd_pos@std_msgs/msg/Float64@gz.msgs.Double',
-            # '/simple_arm/joint2/cmd_pos@std_msgs/msg/Float64@gz.msgs.Double',
-            # '/simple_arm/joint3/cmd_pos@std_msgs/msg/Float64@gz.msgs.Double',
-            # '/simple_arm/joint4/cmd_pos@std_msgs/msg/Float64@gz.msgs.Double',
+    
         ]
     )
     

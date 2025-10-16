@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/arm_simulation.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/rviz_arm_simulation.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=False,
@@ -29,6 +30,7 @@ setup(
             # 'listener = py_pubsub.subscriber_member_function:main',
             'ros_arm_gui = sample_arm.ros_arm_gui:main',
             'arm_gazebo_bridge = sample_arm.arm_gazebo_bridge:main',
+            'joint_state_converter = sample_arm.joint_state_converter:main',
         ],
     },
 )

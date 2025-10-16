@@ -13,6 +13,10 @@
     "runArgs":[
 
       //   "--gpus=all",
+      // below may not work on recent versions of wsl 
+      // type "id -a" into terminal to get uid and gid and replace the commands below with the actual numbers
+      // other option is to change ownership of files after the container is created using chown command
+      // // sudo chown -R 1001:1001 /workspaces/gazebo_sim
         "-e", "HOST_UID=$(id -u)",
         "-e", "HOST_GID=$(id -g)"
     ],

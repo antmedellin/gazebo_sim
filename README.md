@@ -100,3 +100,8 @@ To launch the full simulation with the robot arm, use:
 ```
  ros2 launch sample_arm arm_simulation.launch.py 
 ```
+
+To launch rviz simulation with the robot arm, use:
+```
+ ros2 launch sample_arm rviz_arm_simulation.launch.py
+```
