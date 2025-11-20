@@ -95,6 +95,14 @@ def generate_launch_description():
         output='screen'
     )
     
+    # TCP Joint Publisher Node
+    tcp_joint_publisher = Node(
+        package='sample_arm',
+        executable='tcp_joint_publisher',
+        name='tcp_joint_publisher',
+        output='screen'
+    )
+    
     # RViz2 Node
     rviz_node = Node(
         package='rviz2',
@@ -115,5 +123,6 @@ def generate_launch_description():
         robot_state_publisher,
         joint_state_converter,
         arm_gui,
+        tcp_joint_publisher,
         rviz_node,
     ])

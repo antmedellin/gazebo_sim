@@ -31,6 +31,7 @@ setup(
             'ros_arm_gui = sample_arm.ros_arm_gui:main',
             'arm_gazebo_bridge = sample_arm.arm_gazebo_bridge:main',
             'joint_state_converter = sample_arm.joint_state_converter:main',
+            'tcp_joint_publisher = sample_arm.tcp_joint_publisher:main',
         ],
     },
 )

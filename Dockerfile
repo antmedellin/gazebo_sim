@@ -1,5 +1,8 @@
 # build docker image
 # docker build -t ros_and_gazebo_ros_img .
+# docker build --build-arg HOST_UID=$(id -u) -t ros_and_gazebo_ros_img .
+
+
 
 # FROM osrf/ros:jazzy-desktop-full
 FROM ros:jazzy
@@ -48,6 +51,7 @@ RUN curl -fsSL https://packages.osrfoundation.org/gazebo.gpg -o /usr/share/keyri
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m developer 
+
 
 RUN echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer
 
