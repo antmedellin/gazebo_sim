@@ -97,16 +97,30 @@ class ArmGazeboBridge(Node):
     
     def gazebo_joint_state_callback(self, msg):
         """Forward Gazebo joint state to standard ROS2 joint_states topic"""
+        # Filter out gripper joints - only keep joint1-4 and joint5
+        filtered_names = []
+        filtered_positions = []
+        filtered_velocities = []
+        filtered_efforts = []
+        
+        for i, name in enumerate(msg.name):
+            # Include joint1-4 and joint5, exclude gripper_joint1/2
+            if name in ['joint1', 'joint2', 'joint3', 'joint4', 'joint5']:
+                filtered_names.append(name)
+                filtered_positions.append(msg.position[i] if i < len(msg.position) else 0.0)
+                filtered_velocities.append(msg.velocity[i] if i < len(msg.velocity) else 0.0)
+                filtered_efforts.append(msg.effort[i] if i < len(msg.effort) else 0.0)
+        
         # Create a new JointState message with standard topic name
         joint_state_msg = JointState()
         joint_state_msg.header.stamp = self.get_clock().now().to_msg()
         joint_state_msg.header.frame_id = "base_link"
         
-        # Copy joint data from Gazebo joint state
-        joint_state_msg.name = msg.name
-        joint_state_msg.position = msg.position
-        joint_state_msg.velocity = msg.velocity if msg.velocity else [0.0] * len(msg.name)
-        joint_state_msg.effort = msg.effort if msg.effort else [0.0] * len(msg.name)
+        # Copy filtered joint data from Gazebo joint state
+        joint_state_msg.name = filtered_names
+        joint_state_msg.position = filtered_positions
+        joint_state_msg.velocity = filtered_velocities
+        joint_state_msg.effort = filtered_efforts
         
         # Publish to standard ROS2 joint_states topic
         self.joint_state_pub.publish(joint_state_msg)

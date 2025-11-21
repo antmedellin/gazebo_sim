@@ -105,3 +105,11 @@ To launch rviz simulation with the robot arm, use:
 ```
  ros2 launch sample_arm rviz_arm_simulation.launch.py
 ```
+
+To launch gui only for testing, use:
+```
+ ros2 launch sample_arm servo_gui.launch.py
+```
+
+ python3 src/tcp_joint_listener.py 
+

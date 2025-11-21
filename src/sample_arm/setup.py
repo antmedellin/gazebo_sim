@@ -12,6 +12,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/arm_simulation.launch.py']),
         ('share/' + package_name + '/launch', ['launch/rviz_arm_simulation.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/servo_gui.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=False,
@@ -32,6 +33,7 @@ setup(
             'arm_gazebo_bridge = sample_arm.arm_gazebo_bridge:main',
             'joint_state_converter = sample_arm.joint_state_converter:main',
             'tcp_joint_publisher = sample_arm.tcp_joint_publisher:main',
+            'gui_servo = sample_arm.gui_servo:main',
         ],
     },
 )

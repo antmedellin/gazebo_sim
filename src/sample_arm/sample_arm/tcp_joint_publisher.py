@@ -48,7 +48,21 @@ class TCPJointPublisher(Node):
     
     def joint_state_callback(self, msg):
         """Receive joint states and send to TCP clients"""
-        # Convert JointState to dict
+        # Filter to only include joint1-5 (main arm joints + gripper as joint5)
+        filtered_names = []
+        filtered_positions = []
+        filtered_velocities = []
+        filtered_efforts = []
+        
+        for i, name in enumerate(msg.name):
+            # Only include joint1, joint2, joint3, joint4, joint5
+            if name in ['joint1', 'joint2', 'joint3', 'joint4', 'joint5']:
+                filtered_names.append(name)
+                filtered_positions.append(msg.position[i] if i < len(msg.position) else 0.0)
+                filtered_velocities.append(msg.velocity[i] if i < len(msg.velocity) else 0.0)
+                filtered_efforts.append(msg.effort[i] if i < len(msg.effort) else 0.0)
+        
+        # Convert JointState to dict (only main arm joints)
         joint_data = {
             'header': {
                 'stamp': {
@@ -57,10 +71,10 @@ class TCPJointPublisher(Node):
                 },
                 'frame_id': msg.header.frame_id
             },
-            'name': list(msg.name),
-            'position': list(msg.position),
-            'velocity': list(msg.velocity),
-            'effort': list(msg.effort)
+            'name': filtered_names,
+            'position': filtered_positions,
+            'velocity': filtered_velocities,
+            'effort': filtered_efforts
         }
         
         # Serialize to JSON

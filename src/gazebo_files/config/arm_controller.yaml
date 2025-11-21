@@ -15,6 +15,7 @@ arm_controller:
       - joint2
       - joint3
       - joint4
+      - joint5
     command_interfaces:
       - position
     state_interfaces:
@@ -28,5 +29,4 @@ joint_state_broadcaster:
       - joint2
       - joint3
       - joint4
-      - gripper_joint1
-      - gripper_joint2
+      - joint5
